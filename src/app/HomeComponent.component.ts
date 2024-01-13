@@ -7,11 +7,13 @@ import { HomeService } from "./HomeService.service";
     styleUrls: ['./app.component.css'],
 })
 export class HomeComponent implements OnInit{
+    data: any;
+    
     constructor(private homeService: HomeService){}
 
     ngOnInit(): void {
-        this.homeService.getAllDetails().subscribe((data) => {
-            console.log(data);
-        })
+        this.homeService.getSpecificData().subscribe((response) => {
+            this.data = response;
+        });
     }
 }
