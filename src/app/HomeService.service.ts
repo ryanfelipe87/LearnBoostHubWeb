@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
 
@@ -6,19 +6,11 @@ import { Observable, map } from "rxjs";
     providedIn: 'root'
 })
 export class HomeService {
-    private apiUrl = 'https://httpbin.org';
+    private apiUrl = 'https://httpbin.org/get';
 
-    constructor(private http: HttpClient){}
+    constructor(private httpClient: HttpClient){}
 
-    getAllDetails(): Observable<any> {
-        const url = '${this.apiUrl}/get';
-        return this.http.get(url);
-    }
-
-    getSpecificData(): Observable<any> {
-        const url = '${this.apiUrl}/get';
-        return this.http.get(url).pipe(
-            map((response: any) => response)
-        );
+    getAllDetails(){
+        return this.httpClient.get(this.apiUrl);
     }
 }

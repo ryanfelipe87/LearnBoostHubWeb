@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './HomeService.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LearnBoostHubWeb';
+  home: any;
+
+  constructor(private homeService: HomeService){}
+
+  ngOnInit(){
+    this.homeService.getAllDetails().subscribe((response) => {
+      this.home = response; },
+      (error) => {console.log(error); });
+  }
 }
